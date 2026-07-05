@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#f7f3ea;--card:#fffdf8;--ink:#1b1b1e;--soft:#766f5f;--navy:#1f3a5c;--ember:#d2492e;--moss:#4f6b4a;--gold:#c99a3b;--line:#e2d9c2}
-*{box-sizing:border-box}.hidden{display:none!important}body{margin:0;background:var(--paper);color:var(--ink);font-family:Pretendard,-apple-system,sans-serif;line-height:1.5}.app{max-width:680px;margin:0 auto;padding:28px 18px 80px}.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--soft);font-weight:700;text-transform:uppercase}h1{font-family:"Nanum Pen Script",cursive;font-size:48px;margin:0 0 4px;color:var(--navy);font-weight:400}.stats{font-size:13px;color:var(--soft)}.badge{display:inline-block;background:var(--navy);color:#fff;font-size:11px;padding:2px 8px;border-radius:20px;margin-left:6px;font-weight:700}.continue-bar{margin:22px 0}.cbar-card{display:flex;align-items:center;gap:14px;background:var(--navy);color:#fdf8ee;border-radius:14px;padding:16px 18px;cursor:pointer;border:0;width:100%;text-align:left}.cbar-tag{font-size:11px;letter-spacing:.08em;color:#ffd9a0;font-weight:800;text-transform:uppercase}.cbar-title{font-size:16px;font-weight:800;margin-top:2px}.cbar-arrow{margin-left:auto;font-size:20px}.notice,.cbar-empty,.cbar-done{background:var(--card);border:1px dashed var(--line);color:var(--soft);border-radius:14px;padding:16px 18px;font-size:14px}.toolbar{display:flex;gap:8px;margin:18px 0;align-items:center}.toolbar input{flex:1;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;font-size:14px}.ghost-btn,.add-launcher,.btn-secondary,.icon-btn{border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:10px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.ghost-btn{padding:10px 14px;white-space:nowrap}.ghost-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}.add-launcher{width:100%;border-style:dashed;color:var(--navy);padding:12px;margin-bottom:18px}.add-form-wrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}.add-form-wrap h3{margin:0 0 14px;font-size:15px;color:var(--navy)}.form-row{margin-bottom:12px;display:flex;flex-direction:column;gap:5px}.form-row label{font-size:12px;font-weight:800;color:var(--soft)}.form-row input{padding:9px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;background:#fff}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-actions{display:flex;gap:8px;margin-top:8px}.btn-primary{background:var(--ember);color:#fff;border:0;padding:10px 16px;border-radius:8px;font:inherit;font-weight:800;cursor:pointer}.btn-secondary{padding:10px 16px}.timeline{position:relative}.timeline:before{content:"";position:absolute;left:22px;top:6px;bottom:6px;width:2px;background:var(--line)}.ep-card{display:flex;gap:14px;margin-bottom:22px;position:relative;align-items:flex-start}.ep-marker{flex-shrink:0;width:46px;height:46px;border-radius:50%;background:var(--card);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--soft);z-index:1;font-family:"Black Han Sans",sans-serif}.ep-card.read .ep-marker{background:var(--moss);border-color:var(--moss);color:#fff}.ep-card.next .ep-marker{border-color:var(--ember);box-shadow:0 0 0 4px rgba(210,73,46,.15)}.ep-body{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:12px}.ep-card.read .ep-body{opacity:.72}.ep-thumb{width:100%;height:240px;border-radius:10px;overflow:hidden;background:var(--gold);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-family:"Black Han Sans",sans-serif}.ep-thumb img{width:100%;height:100%;object-fit:cover;display:block}.ep-num-tag{font-size:11px;font-weight:800;color:var(--navy);letter-spacing:.04em}.ep-title{font-size:15px;font-weight:800;margin:2px 0 4px;word-break:break-word}.ep-meta{font-size:11.5px;color:var(--soft);margin-bottom:8px}.ep-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.link-btn{background:var(--navy);color:#fff;border:0;padding:6px 11px;border-radius:7px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}.read-toggle{display:flex;align-items:center;gap:5px;color:var(--soft);cursor:pointer;font-weight:700;font-size:12.5px}.read-toggle input{accent-color:var(--moss)}.icon-btn{padding:6px 10px;border-radius:7px;font-size:12.5px}.icon-btn.danger{color:var(--ember);border-color:var(--ember)}.empty-state{text-align:center;padding:50px 16px;color:var(--soft);border:1px dashed var(--line);border-radius:14px}.modal-overlay,.gate-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;z-index:50}.modal-overlay{background:rgba(27,27,30,.45)}.modal,.gate-card{background:var(--card);border-radius:16px;padding:24px;max-width:360px;width:100%}.modal h3{margin:0 0 12px;font-size:16px;color:var(--navy)}.modal p,.gate-card p{font-size:13px;color:var(--soft);margin:0 0 14px}.modal input,.gate-card input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;margin-bottom:10px}.modal-error,.gate-error{color:var(--ember);font-size:12px;min-height:14px}.modal-actions{display:flex;gap:8px;justify-content:flex-end}.gate-overlay{background:var(--navy);z-index:100}.gate-card{text-align:center}.gate-eyebrow{font-size:11px;letter-spacing:.12em;color:var(--soft);font-weight:800;text-transform:uppercase}.gate-card h2{font-family:"Nanum Pen Script",cursive;color:var(--navy);font-size:32px;margin:0 0 12px;font-weight:400}.gate-card button{width:100%;background:var(--ember);color:#fff;border:0;padding:11px;border-radius:8px;font:inherit;font-weight:800;cursor:pointer}footer{margin-top:40px;font-size:11.5px;color:var(--soft);text-align:center;line-height:1.7}@media (max-width:420px){.ep-thumb{height:200px}.form-grid{grid-template-columns:1fr}.toolbar{align-items:stretch;flex-direction:column}}
+*{box-sizing:border-box}.hidden{display:none!important}body{margin:0;background:var(--paper);color:var(--ink);font-family:Pretendard,-apple-system,sans-serif;line-height:1.5}.app{max-width:680px;margin:0 auto;padding:28px 18px 80px}.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--soft);font-weight:700;text-transform:uppercase}h1{font-family:"Nanum Pen Script",cursive;font-size:48px;margin:0 0 4px;color:var(--navy);font-weight:400}.stats{font-size:13px;color:var(--soft)}.badge{display:inline-block;background:var(--navy);color:#fff;font-size:11px;padding:2px 8px;border-radius:20px;margin-left:6px;font-weight:700}.continue-bar{margin:22px 0}.cbar-card{display:flex;align-items:center;gap:14px;background:var(--navy);color:#fdf8ee;border-radius:14px;padding:16px 18px;cursor:pointer;border:0;width:100%;text-align:left}.cbar-tag{font-size:11px;letter-spacing:.08em;color:#ffd9a0;font-weight:800;text-transform:uppercase}.cbar-title{font-size:16px;font-weight:800;margin-top:2px}.cbar-arrow{margin-left:auto;font-size:20px}.notice,.cbar-empty,.cbar-done{background:var(--card);border:1px dashed var(--line);color:var(--soft);border-radius:14px;padding:16px 18px;font-size:14px}.toolbar{display:flex;gap:8px;margin:18px 0;align-items:center}.toolbar input{flex:1;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;font-size:14px}.ghost-btn,.add-launcher,.btn-secondary,.icon-btn{border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:10px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.ghost-btn{padding:10px 14px;white-space:nowrap}.ghost-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}.add-launcher{width:100%;border-style:dashed;color:var(--navy);padding:12px;margin-bottom:18px}.add-form-wrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}.add-form-wrap h3{margin:0 0 14px;font-size:15px;color:var(--navy)}.form-row{margin-bottom:12px;display:flex;flex-direction:column;gap:5px}.form-row label{font-size:12px;font-weight:800;color:var(--soft)}.form-row input,.form-row textarea{padding:9px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;background:#fff}.form-row textarea{min-height:150px;resize:vertical;line-height:1.5}.form-hint{font-size:12px;color:var(--soft);margin:-4px 0 12px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}.btn-primary{background:var(--ember);color:#fff;border:0;padding:10px 16px;border-radius:8px;font:inherit;font-weight:800;cursor:pointer}.btn-secondary{padding:10px 16px}.timeline{position:relative}.timeline:before{content:"";position:absolute;left:22px;top:6px;bottom:6px;width:2px;background:var(--line)}.ep-card{display:flex;gap:14px;margin-bottom:22px;position:relative;align-items:flex-start}.ep-marker{flex-shrink:0;width:46px;height:46px;border-radius:50%;background:var(--card);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--soft);z-index:1;font-family:"Black Han Sans",sans-serif}.ep-card.read .ep-marker{background:var(--moss);border-color:var(--moss);color:#fff}.ep-card.next .ep-marker{border-color:var(--ember);box-shadow:0 0 0 4px rgba(210,73,46,.15)}.ep-body{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:12px}.ep-card.read .ep-body{opacity:.72}.ep-thumb{width:100%;height:240px;border-radius:10px;overflow:hidden;background:var(--gold);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-family:"Black Han Sans",sans-serif}.ep-thumb img{width:100%;height:100%;object-fit:cover;display:block}.ep-num-tag{font-size:11px;font-weight:800;color:var(--navy);letter-spacing:.04em}.ep-title{font-size:15px;font-weight:800;margin:2px 0 4px;word-break:break-word}.ep-meta{font-size:11.5px;color:var(--soft);margin-bottom:8px}.ep-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.link-btn{background:var(--navy);color:#fff;border:0;padding:6px 11px;border-radius:7px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}.read-toggle{display:flex;align-items:center;gap:5px;color:var(--soft);cursor:pointer;font-weight:700;font-size:12.5px}.read-toggle input{accent-color:var(--moss)}.icon-btn{padding:6px 10px;border-radius:7px;font-size:12.5px}.icon-btn.danger{color:var(--ember);border-color:var(--ember)}.empty-state{text-align:center;padding:50px 16px;color:var(--soft);border:1px dashed var(--line);border-radius:14px}.modal-overlay,.gate-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;z-index:50}.modal-overlay{background:rgba(27,27,30,.45)}.modal,.gate-card{background:var(--card);border-radius:16px;padding:24px;max-width:360px;width:100%}.modal h3{margin:0 0 12px;font-size:16px;color:var(--navy)}.modal p,.gate-card p{font-size:13px;color:var(--soft);margin:0 0 14px}.modal input,.gate-card input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;margin-bottom:10px}.modal-error,.gate-error{color:var(--ember);font-size:12px;min-height:14px}.modal-actions{display:flex;gap:8px;justify-content:flex-end}.gate-overlay{background:var(--navy);z-index:100}.gate-card{text-align:center}.gate-eyebrow{font-size:11px;letter-spacing:.12em;color:var(--soft);font-weight:800;text-transform:uppercase}.gate-card h2{font-family:"Nanum Pen Script",cursive;color:var(--navy);font-size:32px;margin:0 0 12px;font-weight:400}.gate-card button{width:100%;background:var(--ember);color:#fff;border:0;padding:11px;border-radius:8px;font:inherit;font-weight:800;cursor:pointer}footer{margin-top:40px;font-size:11.5px;color:var(--soft);text-align:center;line-height:1.7}@media (max-width:420px){.ep-thumb{height:200px}.form-grid{grid-template-columns:1fr}.toolbar{align-items:stretch;flex-direction:column}}
 </style>
 </head>
 <body>
@@ -24,7 +24,7 @@
     <input type="search" id="searchInput" placeholder="회차 제목으로 찾기">
     <button class="ghost-btn" id="adminBtn">관리자</button>
   </div>
-  <button class="add-launcher hidden" id="addLauncher">+ 새 회차 추가</button>
+  <button class="add-launcher hidden" id="addLauncher">+ 링크 빠른 추가</button>
   <div class="add-form-wrap hidden" id="formWrap"></div>
   <div class="timeline hidden" id="timeline"></div>
   <div class="empty-state hidden" id="emptyState"><div><b>아직 등록된 회차가 없어요.</b></div><div>관리자 모드에서 첫 화를 올리면 여기 쌓여요.</div></div>
@@ -50,6 +50,7 @@
   const escapeHtml = (str) => String(str ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const sortedEpisodes = () => [...episodes].sort((a, b) => Number(a.ep) - Number(b.ep));
   const nextUnread = () => sortedEpisodes().find((e) => !readIds.has(e.id)) || null;
+  const nextEpisodeNumber = () => episodes.length ? Math.max(...episodes.map((item) => Number(item.ep) || 0)) + 1 : 1;
 
   async function apiGetEpisodes() {
     const res = await fetch("/api/storage?key=episodes");
@@ -166,10 +167,48 @@
     render();
   }
 
+  function parseQuickEntries(text) {
+    const seen = new Set(episodes.map((ep) => ep.url));
+    const urlPattern = /https?:\/\/[^\s<>"'`]+/g;
+    return text.split(/\n+/).flatMap((line) => {
+      const urls = line.match(urlPattern) || [];
+      return urls.map((rawUrl) => {
+        const url = rawUrl.replace(/[),.!?]+$/, "");
+        const title = line.replace(rawUrl, "").replace(/[-–—|:]+$/, "").trim();
+        if (seen.has(url)) return null;
+        seen.add(url);
+        return { title, url };
+      }).filter(Boolean);
+    });
+  }
+
+  function showQuickAdd() {
+    editingId = null;
+    $("#formWrap").innerHTML = `<h3>링크 빠른 추가</h3>
+      <div class="form-row">
+        <label>쓰레드 링크</label>
+        <textarea id="quickLinks" placeholder="Threads 링크를 한 줄에 하나씩 붙여넣기&#10;제목 https://www.threads.net/... 처럼 넣으면 제목도 같이 저장돼요."></textarea>
+      </div>
+      <div class="form-hint">회차 번호는 마지막 EP 다음 번호로, 날짜는 오늘로 자동 저장됩니다. 이미 등록된 링크는 건너뜁니다.</div>
+      <div class="modal-error" id="formError"></div>
+      <div class="form-actions">
+        <button class="btn-primary" id="quickSave">링크 저장</button>
+        <button class="btn-secondary" id="detailAdd">상세 입력</button>
+        <button class="btn-secondary" id="formCancel">취소</button>
+      </div>`;
+    $("#formWrap").classList.remove("hidden");
+    $("#addLauncher").classList.add("hidden");
+    $("#quickSave").addEventListener("click", saveQuickAdd);
+    $("#detailAdd").addEventListener("click", () => showForm());
+    $("#formCancel").addEventListener("click", cancelForm);
+    $("#formWrap").scrollIntoView({ behavior: "smooth", block: "center" });
+    $("#quickLinks").focus();
+  }
+
   function showForm(id = null) {
     editingId = id;
     const ep = id ? episodes.find((item) => item.id === id) : null;
-    const nextEpNum = ep ? ep.ep : (episodes.length ? Math.max(...episodes.map((item) => Number(item.ep) || 0)) + 1 : 1);
+    const nextEpNum = ep ? ep.ep : nextEpisodeNumber();
     $("#formWrap").innerHTML = `<h3>${ep ? "회차 수정" : "새 회차 추가"}</h3>
       <div class="form-grid"><div class="form-row"><label>회차 번호</label><input type="number" id="fEp" value="${escapeHtml(nextEpNum)}" min="1"></div><div class="form-row"><label>업로드 날짜</label><input type="date" id="fDate" value="${escapeHtml(ep?.date || todayStr())}"></div></div>
       <div class="form-row"><label>제목</label><input type="text" id="fTitle" value="${escapeHtml(ep?.title || "")}"></div>
@@ -210,6 +249,37 @@
       render();
     } catch (error) {
       $("#formError").textContent = error.message;
+    }
+  }
+
+  async function saveQuickAdd() {
+    const entries = parseQuickEntries($("#quickLinks").value);
+    const errEl = $("#formError");
+    if (!entries.length) {
+      errEl.textContent = "새로 추가할 링크를 찾지 못했어요. Threads 주소를 한 줄에 하나씩 붙여넣어 주세요.";
+      return;
+    }
+    let epNum = nextEpisodeNumber();
+    const date = todayStr();
+    const newItems = entries.map((entry) => {
+      const ep = epNum++;
+      return {
+        id: newId(),
+        ep,
+        date,
+        title: entry.title || `EP${pad(ep)}`,
+        url: entry.url,
+        thumb: ""
+      };
+    });
+    episodes.push(...newItems);
+    try {
+      await apiSaveEpisodes();
+      cancelForm();
+      render();
+    } catch (error) {
+      episodes = episodes.filter((ep) => !newItems.some((item) => item.id === ep.id));
+      errEl.textContent = error.message;
     }
   }
 
@@ -280,7 +350,7 @@
   window.__deleteEpisode = deleteEpisode;
   $("#modalOverlay").addEventListener("click", (e) => { if (e.target.id === "modalOverlay") hideModal(); });
   $("#adminBtn").addEventListener("click", handleAdminClick);
-  $("#addLauncher").addEventListener("click", () => showForm());
+  $("#addLauncher").addEventListener("click", showQuickAdd);
   $("#searchInput").addEventListener("input", (e) => { searchTerm = e.target.value; renderTimeline(); });
   renderGate();
 })();
