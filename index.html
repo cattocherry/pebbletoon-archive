@@ -7,636 +7,282 @@
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#F7F3EA;
-    --card:#FFFDF8;
-    --ink:#1B1B1E;
-    --ink-soft:#7a7461;
-    --navy:#1F3A5C;
-    --ember:#D2492E;
-    --moss:#4F6B4A;
-    --gold:#C99A3B;
-    --line:#E2D9C2;
-  }
-  *{box-sizing:border-box;}
-  .hidden{display:none !important;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Pretendard',-apple-system,sans-serif;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  .app{max-width:680px;margin:0 auto;padding:28px 18px 80px;}
-
-  /* ---------- Header ---------- */
-  .eyebrow{
-    font-size:12px;letter-spacing:.12em;color:var(--ink-soft);
-    font-weight:600;text-transform:uppercase;margin-bottom:6px;
-  }
-  h1{
-    font-family:'Nanum Pen Script',cursive;
-    font-size:48px;margin:0 0 4px;color:var(--navy);
-    font-weight:400;
-  }
-  .stats{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums;}
-  .stats .badge{
-    display:inline-block;background:var(--navy);color:#fff;font-size:11px;
-    padding:2px 8px;border-radius:20px;margin-left:6px;font-weight:600;
-    vertical-align:middle;
-  }
-
-  /* ---------- Continue bar ---------- */
-  .continue-bar{margin:22px 0;}
-  .cbar-card{
-    display:flex;align-items:center;gap:14px;
-    background:var(--navy);color:#fdf8ee;border-radius:14px;
-    padding:16px 18px;cursor:pointer;border:none;width:100%;text-align:left;
-    transition:transform .15s ease;
-  }
-  .cbar-card:hover{transform:translateY(-1px);}
-  .cbar-card:active{transform:translateY(0);}
-  .cbar-tag{font-size:11px;letter-spacing:.08em;color:#ffd9a0;font-weight:700;text-transform:uppercase;}
-  .cbar-title{font-size:16px;font-weight:700;margin-top:2px;}
-  .cbar-arrow{margin-left:auto;font-size:20px;flex-shrink:0;}
-  .cbar-done{
-    background:var(--card);border:1px solid var(--line);color:var(--ink-soft);
-    border-radius:14px;padding:16px 18px;font-size:14px;
-  }
-  .cbar-empty{
-    background:var(--card);border:1px dashed var(--line);color:var(--ink-soft);
-    border-radius:14px;padding:16px 18px;font-size:14px;
-  }
-
-  /* ---------- Toolbar ---------- */
-  .toolbar{display:flex;gap:8px;margin:18px 0;align-items:center;}
-  .toolbar input[type="search"]{
-    flex:1;padding:10px 14px;border:1px solid var(--line);border-radius:10px;
-    background:var(--card);font-family:inherit;font-size:14px;color:var(--ink);
-  }
-  .toolbar input[type="search"]:focus{outline:2px solid var(--navy);outline-offset:1px;}
-  .ghost-btn{
-    border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
-    padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;
-    cursor:pointer;white-space:nowrap;font-family:inherit;
-  }
-  .ghost-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
-  .ghost-btn:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--navy);outline-offset:1px;}
-
-  /* ---------- Add form ---------- */
-  .add-launcher{
-    width:100%;border:1px dashed var(--line);background:transparent;
-    color:var(--navy);padding:12px;border-radius:10px;font-weight:700;
-    cursor:pointer;font-family:inherit;font-size:14px;margin-bottom:18px;
-  }
-  .add-form-wrap{
-    background:var(--card);border:1px solid var(--line);border-radius:14px;
-    padding:18px;margin-bottom:22px;
-  }
-  .add-form-wrap h3{margin:0 0 14px;font-size:15px;color:var(--navy);}
-  .form-row{margin-bottom:12px;display:flex;flex-direction:column;gap:5px;}
-  .form-row label{font-size:12px;font-weight:700;color:var(--ink-soft);}
-  .form-row .hint{font-size:11px;color:var(--ink-soft);font-weight:400;}
-  .form-row input, .form-row textarea{
-    padding:9px 12px;border:1px solid var(--line);border-radius:8px;
-    font-family:inherit;font-size:14px;background:#fff;color:var(--ink);
-  }
-  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .form-actions{display:flex;gap:8px;margin-top:8px;}
-  .btn-primary{
-    background:var(--ember);color:#fff;border:none;padding:10px 16px;
-    border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit;font-size:14px;
-  }
-  .btn-secondary{
-    background:transparent;color:var(--ink-soft);border:1px solid var(--line);
-    padding:10px 16px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:14px;
-  }
-
-  /* ---------- Timeline ---------- */
-  .timeline{position:relative;padding-left:0;}
-  .timeline::before{
-    content:'';position:absolute;left:22px;top:6px;bottom:6px;width:2px;background:var(--line);
-  }
-  .ep-card{display:flex;gap:14px;margin-bottom:22px;position:relative;align-items:flex-start;}
-  .ep-marker{
-    flex-shrink:0;width:46px;height:46px;border-radius:50%;
-    background:var(--card);border:2px solid var(--line);
-    display:flex;align-items:center;justify-content:center;
-    font-size:11px;font-weight:800;color:var(--ink-soft);z-index:1;
-    font-family:'Black Han Sans',sans-serif;
-  }
-  .ep-card.read .ep-marker{background:var(--moss);border-color:var(--moss);color:#fff;}
-  .ep-card.next .ep-marker{border-color:var(--ember);box-shadow:0 0 0 4px rgba(210,73,46,.15);animation:pulse 2s infinite;}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(210,73,46,.15);}50%{box-shadow:0 0 0 7px rgba(210,73,46,.08);}}
-
-.ep-body{
-      flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;
-      padding:14px;display:flex;flex-direction:column;gap:12px;
-}
-    .ep-card.read .ep-body{opacity:.72;}
-    .ep-thumb{
-          flex-shrink:0;width:100%;height:240px;border-radius:10px;overflow:hidden;
-          background:var(--gold);display:flex;align-items:center;justify-content:center;
-          color:#fff;font-weight:800;font-size:28px;font-family:'Black Han Sans',sans-serif;
-    }
-    .ep-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-  .ep-info{flex:1;min-width:0;}
-  .ep-num-tag{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.04em;}
-  .ep-title{font-size:15px;font-weight:700;margin:2px 0 4px;word-break:break-word;}
-  .ep-meta{font-size:11.5px;color:var(--ink-soft);margin-bottom:8px;}
-  .ep-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-  .ep-actions button, .ep-actions label{font-size:12.5px;}
-  .link-btn{
-    background:var(--navy);color:#fff;border:none;padding:6px 11px;border-radius:7px;
-    font-weight:600;cursor:pointer;font-family:inherit;
-  }
-  .read-toggle{display:flex;align-items:center;gap:5px;color:var(--ink-soft);cursor:pointer;font-weight:600;}
-  .read-toggle input{accent-color:var(--moss);}
-  .icon-btn{
-    background:transparent;border:1px solid var(--line);color:var(--ink-soft);
-    padding:6px 10px;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:600;
-  }
-  .icon-btn.danger{color:var(--ember);border-color:var(--ember);}
-
-  /* ---------- Empty state ---------- */
-  .empty-state{
-    text-align:center;padding:50px 16px;color:var(--ink-soft);
-    border:1px dashed var(--line);border-radius:14px;
-  }
-  .empty-state .e-icon{font-size:30px;margin-bottom:10px;}
-  .empty-state b{color:var(--ink);}
-
-  /* ---------- Modal ---------- */
-  .modal-overlay{
-    position:fixed;inset:0;background:rgba(27,27,30,.45);
-    display:flex;align-items:center;justify-content:center;padding:18px;z-index:50;
-  }
-  .modal{
-    background:var(--card);border-radius:14px;padding:22px;max-width:340px;width:100%;
-  }
-  .modal h3{margin:0 0 12px;font-size:16px;color:var(--navy);}
-  .modal p{font-size:13px;color:var(--ink-soft);margin:0 0 14px;}
-  .modal input{
-    width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;
-    font-family:inherit;font-size:14px;margin-bottom:10px;box-sizing:border-box;
-  }
-  .modal .modal-error{color:var(--ember);font-size:12px;margin:-4px 0 10px;min-height:14px;}
-  .modal-actions{display:flex;gap:8px;justify-content:flex-end;}
-
-  footer{margin-top:40px;font-size:11.5px;color:var(--ink-soft);text-align:center;line-height:1.7;}
-
-@media (max-width:420px){
-      .ep-thumb{height:200px;}
-      .form-grid{grid-template-columns:1fr;}
-}
-
-  /* ---------- Entry gate ---------- */
-  .gate-overlay{
-    position:fixed;inset:0;background:var(--navy);
-    display:flex;align-items:center;justify-content:center;
-    padding:20px;z-index:100;
-  }
-  .gate-card{
-    background:var(--card);border-radius:16px;padding:32px 26px;
-    max-width:340px;width:100%;text-align:center;
-  }
-  .gate-eyebrow{
-    font-size:11px;letter-spacing:.12em;color:var(--ink-soft);
-    text-transform:uppercase;font-weight:700;margin-bottom:6px;
-  }
-  .gate-card h2{
-    font-family:'Nanum Pen Script',cursive;color:var(--navy);
-    font-size:32px;margin:0 0 12px;font-weight:400;
-  }
-  .gate-card p{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;}
-  .gate-card input{
-    width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;
-    font-family:inherit;font-size:14px;margin-bottom:10px;box-sizing:border-box;
-    text-align:center;
-  }
-  .gate-card .gate-error{color:var(--ember);font-size:12px;min-height:14px;margin:-2px 0 12px;}
-  .gate-card button{
-    width:100%;background:var(--ember);color:#fff;border:none;padding:11px;
-    border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit;font-size:14px;
-  }
+:root{--paper:#f7f3ea;--card:#fffdf8;--ink:#1b1b1e;--soft:#766f5f;--navy:#1f3a5c;--ember:#d2492e;--moss:#4f6b4a;--gold:#c99a3b;--line:#e2d9c2}
+*{box-sizing:border-box}.hidden{display:none!important}body{margin:0;background:var(--paper);color:var(--ink);font-family:Pretendard,-apple-system,sans-serif;line-height:1.5}.app{max-width:680px;margin:0 auto;padding:28px 18px 80px}.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--soft);font-weight:700;text-transform:uppercase}h1{font-family:"Nanum Pen Script",cursive;font-size:48px;margin:0 0 4px;color:var(--navy);font-weight:400}.stats{font-size:13px;color:var(--soft)}.badge{display:inline-block;background:var(--navy);color:#fff;font-size:11px;padding:2px 8px;border-radius:20px;margin-left:6px;font-weight:700}.continue-bar{margin:22px 0}.cbar-card{display:flex;align-items:center;gap:14px;background:var(--navy);color:#fdf8ee;border-radius:14px;padding:16px 18px;cursor:pointer;border:0;width:100%;text-align:left}.cbar-tag{font-size:11px;letter-spacing:.08em;color:#ffd9a0;font-weight:800;text-transform:uppercase}.cbar-title{font-size:16px;font-weight:800;margin-top:2px}.cbar-arrow{margin-left:auto;font-size:20px}.notice,.cbar-empty,.cbar-done{background:var(--card);border:1px dashed var(--line);color:var(--soft);border-radius:14px;padding:16px 18px;font-size:14px}.toolbar{display:flex;gap:8px;margin:18px 0;align-items:center}.toolbar input{flex:1;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;font-size:14px}.ghost-btn,.add-launcher,.btn-secondary,.icon-btn{border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:10px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.ghost-btn{padding:10px 14px;white-space:nowrap}.ghost-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}.add-launcher{width:100%;border-style:dashed;color:var(--navy);padding:12px;margin-bottom:18px}.add-form-wrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}.add-form-wrap h3{margin:0 0 14px;font-size:15px;color:var(--navy)}.form-row{margin-bottom:12px;display:flex;flex-direction:column;gap:5px}.form-row label{font-size:12px;font-weight:800;color:var(--soft)}.form-row input{padding:9px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;background:#fff}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-actions{display:flex;gap:8px;margin-top:8px}.btn-primary{background:var(--ember);color:#fff;border:0;padding:10px 16px;border-radius:8px;font:inherit;font-weight:800;cursor:pointer}.btn-secondary{padding:10px 16px}.timeline{position:relative}.timeline:before{content:"";position:absolute;left:22px;top:6px;bottom:6px;width:2px;background:var(--line)}.ep-card{display:flex;gap:14px;margin-bottom:22px;position:relative;align-items:flex-start}.ep-marker{flex-shrink:0;width:46px;height:46px;border-radius:50%;background:var(--card);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--soft);z-index:1;font-family:"Black Han Sans",sans-serif}.ep-card.read .ep-marker{background:var(--moss);border-color:var(--moss);color:#fff}.ep-card.next .ep-marker{border-color:var(--ember);box-shadow:0 0 0 4px rgba(210,73,46,.15)}.ep-body{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:12px}.ep-card.read .ep-body{opacity:.72}.ep-thumb{width:100%;height:240px;border-radius:10px;overflow:hidden;background:var(--gold);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-family:"Black Han Sans",sans-serif}.ep-thumb img{width:100%;height:100%;object-fit:cover;display:block}.ep-num-tag{font-size:11px;font-weight:800;color:var(--navy);letter-spacing:.04em}.ep-title{font-size:15px;font-weight:800;margin:2px 0 4px;word-break:break-word}.ep-meta{font-size:11.5px;color:var(--soft);margin-bottom:8px}.ep-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.link-btn{background:var(--navy);color:#fff;border:0;padding:6px 11px;border-radius:7px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}.read-toggle{display:flex;align-items:center;gap:5px;color:var(--soft);cursor:pointer;font-weight:700;font-size:12.5px}.read-toggle input{accent-color:var(--moss)}.icon-btn{padding:6px 10px;border-radius:7px;font-size:12.5px}.icon-btn.danger{color:var(--ember);border-color:var(--ember)}.empty-state{text-align:center;padding:50px 16px;color:var(--soft);border:1px dashed var(--line);border-radius:14px}.modal-overlay,.gate-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;z-index:50}.modal-overlay{background:rgba(27,27,30,.45)}.modal,.gate-card{background:var(--card);border-radius:16px;padding:24px;max-width:360px;width:100%}.modal h3{margin:0 0 12px;font-size:16px;color:var(--navy)}.modal p,.gate-card p{font-size:13px;color:var(--soft);margin:0 0 14px}.modal input,.gate-card input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;margin-bottom:10px}.modal-error,.gate-error{color:var(--ember);font-size:12px;min-height:14px}.modal-actions{display:flex;gap:8px;justify-content:flex-end}.gate-overlay{background:var(--navy);z-index:100}.gate-card{text-align:center}.gate-eyebrow{font-size:11px;letter-spacing:.12em;color:var(--soft);font-weight:800;text-transform:uppercase}.gate-card h2{font-family:"Nanum Pen Script",cursive;color:var(--navy);font-size:32px;margin:0 0 12px;font-weight:400}.gate-card button{width:100%;background:var(--ember);color:#fff;border:0;padding:11px;border-radius:8px;font:inherit;font-weight:800;cursor:pointer}footer{margin-top:40px;font-size:11.5px;color:var(--soft);text-align:center;line-height:1.7}@media (max-width:420px){.ep-thumb{height:200px}.form-grid{grid-template-columns:1fr}.toolbar{align-items:stretch;flex-direction:column}}
 </style>
 </head>
 <body>
-<div class="gate-overlay" id="gateOverlay">
-  <div class="gate-card" id="gateCard">불러오는 중…</div>
-</div>
-
+<div class="gate-overlay" id="gateOverlay"><div class="gate-card" id="gateCard"></div></div>
 <div class="app hidden" id="appRoot">
   <header>
     <div class="eyebrow">Private Archive · 페블툰</div>
     <h1>페블툰 아카이브</h1>
-    <div class="stats" id="stats">불러오는 중…</div>
+    <div class="stats" id="stats">불러오는 중...</div>
   </header>
-
   <div class="continue-bar" id="continueBar"></div>
-
   <div class="toolbar">
     <input type="search" id="searchInput" placeholder="회차 제목으로 찾기">
-    <button class="ghost-btn" id="adminBtn">🔒 관리자</button>
+    <button class="ghost-btn" id="adminBtn">관리자</button>
   </div>
-
   <button class="add-launcher hidden" id="addLauncher">+ 새 회차 추가</button>
   <div class="add-form-wrap hidden" id="formWrap"></div>
-
   <div class="timeline hidden" id="timeline"></div>
-  <div class="empty-state hidden" id="emptyState">
-    <div class="e-icon">🗂️</div>
-    <div><b>아직 등록된 회차가 없어요.</b></div>
-    <div>친구가 관리자 모드로 들어와서 첫 화를 올리면 여기 쌓여요.</div>
-  </div>
+  <div class="empty-state hidden" id="emptyState"><div><b>아직 등록된 회차가 없어요.</b></div><div>관리자 모드에서 첫 화를 올리면 여기 쌓여요.</div></div>
+  <footer>회차 목록은 공유 저장소에, 읽음 표시는 각자의 브라우저에 저장됩니다.</footer>
 </div>
-
-<div class="modal-overlay hidden" id="modalOverlay">
-  <div class="modal" id="modalBody"></div>
-</div>
-
+<div class="modal-overlay hidden" id="modalOverlay"><div class="modal" id="modalBody"></div></div>
 <script>
-(function(){
-  const KEY_EPISODES = 'episodes';
-  const KEY_ADMIN_PW = 'admin_password';
-  const SITE_PASSWORD = '1149';
-  const KEY_PROGRESS = 'reading_progress';
-
+(() => {
+  const SITE_PASSWORD = "1149";
+  const KEY_PROGRESS = "pebbletoon_read_ids";
   let episodes = [];
-  let readIds = new Set();
+  let readIds = new Set(JSON.parse(localStorage.getItem(KEY_PROGRESS) || "[]"));
   let adminMode = false;
+  let adminPassword = "";
   let editingId = null;
-  let searchTerm = '';
+  let searchTerm = "";
   let loaded = false;
 
   const $ = (sel) => document.querySelector(sel);
-  const gateOverlay = $('#gateOverlay');
-  const gateCard = $('#gateCard');
-  const appRoot = $('#appRoot');
-  const statsEl = $('#stats');
-  const continueBarEl = $('#continueBar');
-  const timelineEl = $('#timeline');
-  const emptyEl = $('#emptyState');
-  const formWrapEl = $('#formWrap');
-  const launcherEl = $('#addLauncher');
-  const adminBtn = $('#adminBtn');
-  const overlay = $('#modalOverlay');
-  const modalBody = $('#modalBody');
+  const pad = (n) => String(n).padStart(2, "0");
+  const todayStr = () => new Date().toISOString().slice(0, 10);
+  const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  const escapeHtml = (str) => String(str ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const sortedEpisodes = () => [...episodes].sort((a, b) => Number(a.ep) - Number(b.ep));
+  const nextUnread = () => sortedEpisodes().find((e) => !readIds.has(e.id)) || null;
 
-  function escapeHtml(str){
-    return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-  function escapeAttr(str){ return escapeHtml(str); }
-  function pad(n){ return String(n).padStart(2,'0'); }
-  function todayStr(){
-    const d = new Date();
-    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-  }
-  function newId(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
-
-  function showModal(html){ modalBody.innerHTML = html; overlay.classList.remove('hidden'); }
-  function hideModal(){ overlay.classList.add('hidden'); modalBody.innerHTML=''; }
-  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) hideModal(); });
-
-  // ---------- storage helpers ----------
-  async function storageGet(key, shared){
-    try{
-      const res = await window.storage.get(key, shared);
-      return res ? res.value : null;
-    }catch(e){ return null; }
-  }
-  async function storageSet(key, value, shared){
-    try{ await window.storage.set(key, value, shared); return true; }
-    catch(e){ console.error('storage set failed', e); return false; }
+  async function apiGetEpisodes() {
+    const res = await fetch("/api/storage?key=episodes");
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "회차를 불러오지 못했어요.");
+    return JSON.parse(data.value || "[]");
   }
 
-  async function loadEpisodes(){
-    const raw = await storageGet(KEY_EPISODES, true);
-    episodes = raw ? JSON.parse(raw) : [];
-  }
-  async function saveEpisodes(){
-    await storageSet(KEY_EPISODES, JSON.stringify(episodes), true);
-  }
-  async function loadProgress(){
-    const raw = await storageGet(KEY_PROGRESS, false);
-    const parsed = raw ? JSON.parse(raw) : { readIds: [] };
-    readIds = new Set(parsed.readIds || []);
-  }
-  async function saveProgress(){
-    await storageSet(KEY_PROGRESS, JSON.stringify({ readIds: Array.from(readIds) }), false);
-  }
-  async function getAdminPassword(){ return await storageGet(KEY_ADMIN_PW, true); }
-  async function setAdminPassword(pw){ await storageSet(KEY_ADMIN_PW, pw, true); }
-
-  // ---------- derived ----------
-  function sortedEpisodes(){
-    return [...episodes].sort((a,b) => (a.ep - b.ep));
-  }
-  function nextUnread(){
-    return sortedEpisodes().find(e => !readIds.has(e.id)) || null;
-  }
-  function filteredEpisodes(){
-    const list = sortedEpisodes();
-    if(!searchTerm) return list;
-    const t = searchTerm.toLowerCase();
-    return list.filter(e => e.title.toLowerCase().includes(t));
+  async function apiSaveEpisodes() {
+    const res = await fetch("/api/storage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key: "episodes", value: JSON.stringify(episodes), adminPassword })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || "저장에 실패했어요.");
   }
 
-  // ---------- render ----------
-  function render(){
-    renderStats();
+  async function apiAuth(password) {
+    const res = await fetch("/api/storage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "auth", adminPassword: password })
+    });
+    return res.ok;
+  }
+
+  function saveProgress() {
+    localStorage.setItem(KEY_PROGRESS, JSON.stringify([...readIds]));
+  }
+
+  function showModal(html) {
+    $("#modalBody").innerHTML = html;
+    $("#modalOverlay").classList.remove("hidden");
+  }
+
+  function hideModal() {
+    $("#modalOverlay").classList.add("hidden");
+    $("#modalBody").innerHTML = "";
+  }
+
+  function render() {
+    const total = episodes.length;
+    const read = episodes.filter((e) => readIds.has(e.id)).length;
+    $("#stats").innerHTML = loaded ? `총 ${total}화 · ${read}화 읽음${adminMode ? '<span class="badge">관리자 모드</span>' : ""}` : "불러오는 중...";
     renderContinueBar();
     renderTimeline();
     renderAdminUI();
   }
 
-  function renderStats(){
-    if(!loaded){ statsEl.textContent = '불러오는 중…'; return; }
-    const total = episodes.length;
-    const read = episodes.filter(e => readIds.has(e.id)).length;
-    statsEl.innerHTML = `총 ${total}화 · ${read}화 읽음` + (adminMode ? `<span class="badge">관리자 모드</span>` : '');
-  }
-
-  function renderContinueBar(){
-    if(!loaded){ continueBarEl.innerHTML = ''; return; }
-    if(episodes.length === 0){
-      continueBarEl.innerHTML = `<div class="cbar-empty">아직 이어볼 회차가 없어요.</div>`;
+  function renderContinueBar() {
+    if (!loaded) return;
+    if (!episodes.length) {
+      $("#continueBar").innerHTML = '<div class="cbar-empty">아직 이어볼 회차가 없어요.</div>';
       return;
     }
     const next = nextUnread();
-    if(!next){
-      const last = sortedEpisodes().slice(-1)[0];
-      continueBarEl.innerHTML = `<div class="cbar-done">전체 ${episodes.length}화를 모두 읽었어요 🎉 새 회차가 올라오면 여기 다시 떠요.</div>`;
+    if (!next) {
+      $("#continueBar").innerHTML = `<div class="cbar-done">전체 ${episodes.length}화를 모두 읽었어요. 새 회차가 올라오면 여기 다시 떠요.</div>`;
       return;
     }
-    continueBarEl.innerHTML = `
-      <button class="cbar-card" id="continueBtn">
-        <div>
-          <div class="cbar-tag">이어보기 · EP${pad(next.ep)}</div>
-          <div class="cbar-title">${escapeHtml(next.title)}</div>
-        </div>
-        <div class="cbar-arrow">→</div>
-      </button>`;
-    $('#continueBtn').addEventListener('click', () => openEpisode(next.id));
+    $("#continueBar").innerHTML = `<button class="cbar-card" id="continueBtn"><div><div class="cbar-tag">이어보기 · EP${pad(next.ep)}</div><div class="cbar-title">${escapeHtml(next.title)}</div></div><div class="cbar-arrow">→</div></button>`;
+    $("#continueBtn").addEventListener("click", () => openEpisode(next.id));
   }
 
-  function renderTimeline(){
-    if(!loaded){ timelineEl.classList.add('hidden'); emptyEl.classList.add('hidden'); return; }
-    const list = filteredEpisodes();
-    if(episodes.length === 0){
-      timelineEl.classList.add('hidden');
-      emptyEl.classList.remove('hidden');
-      return;
-    }
-    emptyEl.classList.add('hidden');
-    timelineEl.classList.remove('hidden');
-
+  function renderTimeline() {
+    if (!loaded) return;
+    const list = sortedEpisodes().filter((e) => !searchTerm || String(e.title).toLowerCase().includes(searchTerm.toLowerCase()));
+    $("#emptyState").classList.toggle("hidden", episodes.length > 0);
+    $("#timeline").classList.toggle("hidden", episodes.length === 0);
     const next = nextUnread();
-    timelineEl.innerHTML = list.map(ep => {
+    $("#timeline").innerHTML = list.map((ep) => {
       const isRead = readIds.has(ep.id);
       const isNext = next && next.id === ep.id;
-      const thumb = ep.thumb
-        ? `<img src="${escapeAttr(ep.thumb)}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='EP${pad(ep.ep)}'">`
-        : `EP${pad(ep.ep)}`;
-      return `
-      <div class="ep-card ${isRead?'read':''} ${isNext?'next':''}">
-        <div class="ep-marker">${isRead ? '✓' : pad(ep.ep)}</div>
+      const thumb = ep.thumb ? `<img src="${escapeHtml(ep.thumb)}" alt="" loading="lazy" onerror="this.parentElement.textContent='EP${pad(ep.ep)}'">` : `EP${pad(ep.ep)}`;
+      return `<div class="ep-card ${isRead ? "read" : ""} ${isNext ? "next" : ""}">
+        <div class="ep-marker">${isRead ? "✓" : pad(ep.ep)}</div>
         <div class="ep-body">
           <div class="ep-thumb">${thumb}</div>
           <div class="ep-info">
             <div class="ep-num-tag">EP${pad(ep.ep)}</div>
             <div class="ep-title">${escapeHtml(ep.title)}</div>
-            <div class="ep-meta">${escapeHtml(ep.date || '')}</div>
+            <div class="ep-meta">${escapeHtml(ep.date || "")}</div>
             <div class="ep-actions">
-              <button class="link-btn" onclick="window.__appOpen('${ep.id}')">쓰레드에서 보기 ↗</button>
-              <label class="read-toggle"><input type="checkbox" ${isRead?'checked':''} onchange="window.__appToggleRead('${ep.id}', this.checked)"> 읽음</label>
-              ${adminMode ? `
-                <button class="icon-btn" onclick="window.__appEdit('${ep.id}')">수정</button>
-                <button class="icon-btn danger" id="del-${ep.id}" onclick="window.__appDelete('${ep.id}')">삭제</button>
-              ` : ''}
+              <button class="link-btn" onclick="window.__openEpisode('${ep.id}')">쓰레드에서 보기 ↗</button>
+              <label class="read-toggle"><input type="checkbox" ${isRead ? "checked" : ""} onchange="window.__toggleRead('${ep.id}', this.checked)"> 읽음</label>
+              ${adminMode ? `<button class="icon-btn" onclick="window.__editEpisode('${ep.id}')">수정</button><button class="icon-btn danger" onclick="window.__deleteEpisode('${ep.id}')">삭제</button>` : ""}
             </div>
           </div>
         </div>
       </div>`;
-    }).join('');
+    }).join("");
   }
 
-  function renderAdminUI(){
-    adminBtn.textContent = adminMode ? '🔓 관리자 모드 해제' : '🔒 관리자';
-    adminBtn.classList.toggle('active', adminMode);
-    launcherEl.classList.toggle('hidden', !adminMode || !!editingId);
-    if(!adminMode){
-      formWrapEl.classList.add('hidden');
-      formWrapEl.innerHTML = '';
+  function renderAdminUI() {
+    $("#adminBtn").textContent = adminMode ? "관리자 모드 해제" : "관리자";
+    $("#adminBtn").classList.toggle("active", adminMode);
+    $("#addLauncher").classList.toggle("hidden", !adminMode || Boolean(editingId));
+    if (!adminMode) {
       editingId = null;
+      $("#formWrap").classList.add("hidden");
+      $("#formWrap").innerHTML = "";
     }
   }
 
-  // ---------- episode actions ----------
-  function openEpisode(id){
-    const ep = episodes.find(e => e.id === id);
-    if(ep && ep.url) window.open(ep.url, '_blank', 'noopener');
+  function openEpisode(id) {
+    const ep = episodes.find((e) => e.id === id);
+    if (ep?.url) window.open(ep.url, "_blank", "noopener");
   }
-  async function toggleRead(id, checked){
-    if(checked) readIds.add(id); else readIds.delete(id);
-    await saveProgress();
+
+  function toggleRead(id, checked) {
+    checked ? readIds.add(id) : readIds.delete(id);
+    saveProgress();
     render();
   }
-  function startAdd(){
-    editingId = null;
-    showForm();
-  }
-  function startEdit(id){
+
+  function showForm(id = null) {
     editingId = id;
-    showForm();
-  }
-  function showForm(){
-    const ep = editingId ? episodes.find(e => e.id === editingId) : null;
-    const nextEpNum = ep ? ep.ep : (episodes.length ? Math.max(...episodes.map(e=>e.ep)) + 1 : 1);
-    formWrapEl.innerHTML = `
-      <h3>${ep ? '회차 수정' : '새 회차 추가'}</h3>
-      <div class="form-grid">
-        <div class="form-row">
-          <label>회차 번호</label>
-          <input type="number" id="fEp" value="${ep ? ep.ep : nextEpNum}" min="1">
-        </div>
-        <div class="form-row">
-          <label>업로드 날짜</label>
-          <input type="date" id="fDate" value="${ep ? (ep.date || todayStr()) : todayStr()}">
-        </div>
-      </div>
-      <div class="form-row">
-        <label>제목</label>
-        <input type="text" id="fTitle" placeholder="예: 연준은 왜 금리를 못 내릴까" value="${ep ? escapeAttr(ep.title) : ''}">
-      </div>
-      <div class="form-row">
-        <label>쓰레드 링크</label>
-        <input type="url" id="fUrl" placeholder="https://www.threads.net/@.../post/..." value="${ep ? escapeAttr(ep.url) : ''}">
-      </div>
-      <div class="form-row">
-        <label>썸네일 이미지 URL <span class="hint">(선택, 비워두면 회차 번호만 표시)</span></label>
-        <input type="text" id="fThumb" placeholder="이미지 직접 링크 URL" value="${ep ? escapeAttr(ep.thumb || '') : ''}">
-      </div>
+    const ep = id ? episodes.find((item) => item.id === id) : null;
+    const nextEpNum = ep ? ep.ep : (episodes.length ? Math.max(...episodes.map((item) => Number(item.ep) || 0)) + 1 : 1);
+    $("#formWrap").innerHTML = `<h3>${ep ? "회차 수정" : "새 회차 추가"}</h3>
+      <div class="form-grid"><div class="form-row"><label>회차 번호</label><input type="number" id="fEp" value="${escapeHtml(nextEpNum)}" min="1"></div><div class="form-row"><label>업로드 날짜</label><input type="date" id="fDate" value="${escapeHtml(ep?.date || todayStr())}"></div></div>
+      <div class="form-row"><label>제목</label><input type="text" id="fTitle" value="${escapeHtml(ep?.title || "")}"></div>
+      <div class="form-row"><label>쓰레드 링크</label><input type="url" id="fUrl" value="${escapeHtml(ep?.url || "")}"></div>
+      <div class="form-row"><label>썸네일 이미지 URL</label><input type="text" id="fThumb" value="${escapeHtml(ep?.thumb || "")}"></div>
       <div class="modal-error" id="formError"></div>
-      <div class="form-actions">
-        <button class="btn-primary" id="formSave">저장</button>
-        <button class="btn-secondary" id="formCancel">취소</button>
-      </div>`;
-    formWrapEl.classList.remove('hidden');
-    launcherEl.classList.add('hidden');
-    $('#formSave').addEventListener('click', saveForm);
-    $('#formCancel').addEventListener('click', cancelForm);
-    formWrapEl.scrollIntoView({ behavior:'smooth', block:'center' });
+      <div class="form-actions"><button class="btn-primary" id="formSave">저장</button><button class="btn-secondary" id="formCancel">취소</button></div>`;
+    $("#formWrap").classList.remove("hidden");
+    $("#addLauncher").classList.add("hidden");
+    $("#formSave").addEventListener("click", saveForm);
+    $("#formCancel").addEventListener("click", cancelForm);
+    $("#formWrap").scrollIntoView({ behavior: "smooth", block: "center" });
   }
-  function cancelForm(){
+
+  function cancelForm() {
     editingId = null;
-    formWrapEl.classList.add('hidden');
-    formWrapEl.innerHTML = '';
-    launcherEl.classList.remove('hidden');
+    $("#formWrap").classList.add("hidden");
+    $("#formWrap").innerHTML = "";
+    renderAdminUI();
   }
-  async function saveForm(){
-    const epNum = parseInt($('#fEp').value, 10);
-    const date = $('#fDate').value;
-    const title = $('#fTitle').value.trim();
-    const url = $('#fUrl').value.trim();
-    const thumb = $('#fThumb').value.trim();
-    const errEl = $('#formError');
 
-    if(!title || !url || !epNum){
-      errEl.textContent = '회차 번호, 제목, 쓰레드 링크는 꼭 입력해야 해요.';
+  async function saveForm() {
+    const epNum = Number($("#fEp").value);
+    const date = $("#fDate").value;
+    const title = $("#fTitle").value.trim();
+    const url = $("#fUrl").value.trim();
+    const thumb = $("#fThumb").value.trim();
+    if (!epNum || !title || !url) {
+      $("#formError").textContent = "회차 번호, 제목, 쓰레드 링크는 꼭 입력해야 해요.";
       return;
     }
-    try{ new URL(url); }
-    catch(e){ errEl.textContent = '링크 형식이 올바르지 않아요. http(s)://로 시작하는 전체 주소를 넣어주세요.'; return; }
+    try { new URL(url); } catch { $("#formError").textContent = "링크 형식이 올바르지 않아요."; return; }
+    if (editingId) Object.assign(episodes.find((e) => e.id === editingId), { ep: epNum, date, title, url, thumb });
+    else episodes.push({ id: newId(), ep: epNum, date, title, url, thumb });
+    try {
+      await apiSaveEpisodes();
+      cancelForm();
+      render();
+    } catch (error) {
+      $("#formError").textContent = error.message;
+    }
+  }
 
-    if(editingId){
-      const ep = episodes.find(e => e.id === editingId);
-      Object.assign(ep, { ep: epNum, date, title, url, thumb });
-    } else {
-      episodes.push({ id: newId(), ep: epNum, date, title, url, thumb });
-    }
-    await saveEpisodes();
-    cancelForm();
-    render();
-  }
-  function confirmDelete(id){
-    const btn = document.getElementById('del-' + id);
-    if(!btn) return;
-    if(btn.dataset.confirming === '1'){
-      doDelete(id);
-      return;
-    }
-    btn.dataset.confirming = '1';
-    btn.textContent = '정말 삭제?';
-    setTimeout(() => { if(btn && btn.dataset.confirming === '1'){ btn.dataset.confirming=''; btn.textContent='삭제'; } }, 3000);
-  }
-  async function doDelete(id){
-    episodes = episodes.filter(e => e.id !== id);
+  async function deleteEpisode(id) {
+    if (!confirm("이 회차를 삭제할까요?")) return;
+    const before = episodes;
+    episodes = episodes.filter((e) => e.id !== id);
     readIds.delete(id);
-    await saveEpisodes();
-    await saveProgress();
-    render();
+    try {
+      await apiSaveEpisodes();
+      saveProgress();
+      render();
+    } catch (error) {
+      episodes = before;
+      alert(error.message);
+    }
   }
 
-  // ---------- admin lock ----------
-  async function handleAdminClick(){
-    if(adminMode){
+  function handleAdminClick() {
+    if (adminMode) {
       adminMode = false;
+      adminPassword = "";
       render();
       return;
     }
-    const existingPw = await getAdminPassword();
-    if(existingPw === null){
-      showModal(`
-        <h3>관리자 비밀번호 처음 설정하기</h3>
-        <p>아직 비밀번호가 없어요. 회차를 올릴 사람(친구)과 함께 쓸 비밀번호를 정해주세요. 이 비밀번호는 이 링크로 들어오는 모든 사람에게 공유되는 저장소에 저장돼요 — 가벼운 잠금용이라는 점 참고해주세요.</p>
-        <input type="password" id="pwNew1" placeholder="새 비밀번호">
-        <input type="password" id="pwNew2" placeholder="비밀번호 확인">
-        <div class="modal-error" id="pwErr"></div>
-        <div class="modal-actions">
-          <button class="btn-secondary" id="pwCancel">취소</button>
-          <button class="btn-primary" id="pwSet">설정하고 시작</button>
-        </div>`);
-      $('#pwCancel').addEventListener('click', hideModal);
-      $('#pwSet').addEventListener('click', async () => {
-        const p1 = $('#pwNew1').value, p2 = $('#pwNew2').value;
-        if(!p1 || p1.length < 3){ $('#pwErr').textContent = '비밀번호는 3자 이상으로 정해주세요.'; return; }
-        if(p1 !== p2){ $('#pwErr').textContent = '두 비밀번호가 서로 달라요.'; return; }
-        await setAdminPassword(p1);
+    showModal(`<h3>관리자 비밀번호 입력</h3><p>회차 추가, 수정, 삭제는 서버에서 비밀번호를 확인한 뒤 저장됩니다.</p><input type="password" id="pwTry" placeholder="비밀번호"><div class="modal-error" id="pwErr"></div><div class="modal-actions"><button class="btn-secondary" id="pwCancel">취소</button><button class="btn-primary" id="pwOk">확인</button></div>`);
+    $("#pwCancel").addEventListener("click", hideModal);
+    const tryLogin = async () => {
+      const value = $("#pwTry").value;
+      if (await apiAuth(value)) {
+        adminPassword = value;
         adminMode = true;
         hideModal();
         render();
-      });
-    } else {
-      showModal(`
-        <h3>관리자 비밀번호 입력</h3>
-        <input type="password" id="pwTry" placeholder="비밀번호">
-        <div class="modal-error" id="pwErr"></div>
-        <div class="modal-actions">
-          <button class="btn-secondary" id="pwCancel">취소</button>
-          <button class="btn-primary" id="pwOk">확인</button>
-        </div>`);
-      $('#pwCancel').addEventListener('click', hideModal);
-      const tryLogin = async () => {
-        const val = $('#pwTry').value;
-        if(val === existingPw){
-          adminMode = true;
-          hideModal();
-          render();
-        } else {
-          $('#pwErr').textContent = '비밀번호가 맞지 않아요.';
-        }
-      };
-      $('#pwOk').addEventListener('click', tryLogin);
-      $('#pwTry').addEventListener('keydown', (e) => { if(e.key === 'Enter') tryLogin(); });
-    }
-  }
-
-  // expose handlers used by inline onclick attributes
-  window.__appOpen = openEpisode;
-  window.__appToggleRead = toggleRead;
-  window.__appEdit = startEdit;
-  window.__appDelete = confirmDelete;
-
-  adminBtn.addEventListener('click', handleAdminClick);
-  launcherEl.addEventListener('click', startAdd);
-  $('#searchInput').addEventListener('input', (e) => { searchTerm = e.target.value; renderTimeline(); });
-
-  // ---------- entry gate ----------
-  function renderGateLogin(correctPw){
-    gateCard.innerHTML = `
-      <div class="gate-eyebrow">Private Archive</div>
-      <h2>페블툰 아카이브</h2>
-      <p>입장 비밀번호를 입력해주세요.</p>
-      <input type="password" id="gatePwTry" placeholder="비밀번호">
-      <div class="gate-error" id="gateErr"></div>
-      <button id="gateEnterBtn">입장하기</button>`;
-    const tryEnter = () => {
-      const val = $('#gatePwTry').value;
-      if(val === correctPw){ unlockSite(); }
-      else { $('#gateErr').textContent = '비밀번호가 맞지 않아요.'; }
+      } else {
+        $("#pwErr").textContent = "비밀번호가 맞지 않아요.";
+      }
     };
-    $('#gateEnterBtn').addEventListener('click', tryEnter);
-    $('#gatePwTry').addEventListener('keydown', (e) => { if(e.key === 'Enter') tryEnter(); });
-  }
-  function unlockSite(){
-    gateOverlay.classList.add('hidden');
-    appRoot.classList.remove('hidden');
-    initApp();
-  }
-  function checkGate(){
-    renderGateLogin(SITE_PASSWORD);
+    $("#pwOk").addEventListener("click", tryLogin);
+    $("#pwTry").addEventListener("keydown", (e) => { if (e.key === "Enter") tryLogin(); });
   }
 
-  // ---------- app init (runs only after the gate is unlocked) ----------
-  async function initApp(){
-    await Promise.all([loadEpisodes(), loadProgress()]);
+  function renderGate() {
+    $("#gateCard").innerHTML = `<div class="gate-eyebrow">Private Archive</div><h2>페블툰 아카이브</h2><p>입장 비밀번호를 입력해주세요.</p><input type="password" id="gatePwTry" placeholder="비밀번호"><div class="gate-error" id="gateErr"></div><button id="gateEnterBtn">입장하기</button>`;
+    const enter = () => {
+      if ($("#gatePwTry").value === SITE_PASSWORD) unlockSite();
+      else $("#gateErr").textContent = "비밀번호가 맞지 않아요.";
+    };
+    $("#gateEnterBtn").addEventListener("click", enter);
+    $("#gatePwTry").addEventListener("keydown", (e) => { if (e.key === "Enter") enter(); });
+  }
+
+  async function unlockSite() {
+    $("#gateOverlay").classList.add("hidden");
+    $("#appRoot").classList.remove("hidden");
+    try {
+      episodes = await apiGetEpisodes();
+    } catch (error) {
+      $("#continueBar").innerHTML = `<div class="notice">저장소 연결이 필요해요: ${escapeHtml(error.message)}</div>`;
+    }
     loaded = true;
     render();
   }
 
-  checkGate();
+  window.__openEpisode = openEpisode;
+  window.__toggleRead = toggleRead;
+  window.__editEpisode = showForm;
+  window.__deleteEpisode = deleteEpisode;
+  $("#modalOverlay").addEventListener("click", (e) => { if (e.target.id === "modalOverlay") hideModal(); });
+  $("#adminBtn").addEventListener("click", handleAdminClick);
+  $("#addLauncher").addEventListener("click", () => showForm());
+  $("#searchInput").addEventListener("input", (e) => { searchTerm = e.target.value; renderTimeline(); });
+  renderGate();
 })();
 </script>
 </body>
