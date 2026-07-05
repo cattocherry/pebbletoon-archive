@@ -78,6 +78,16 @@
     return res.ok;
   }
 
+  async function apiGetMeta(url) {
+    try {
+      const res = await fetch(`/api/meta?url=${encodeURIComponent(url)}`);
+      if (!res.ok) return { title: "", image: "" };
+      return await res.json();
+    } catch {
+      return { title: "", image: "" };
+    }
+  }
+
   function saveProgress() {
     localStorage.setItem(KEY_PROGRESS, JSON.stringify([...readIds]));
   }
@@ -259,27 +269,38 @@
       errEl.textContent = "새로 추가할 링크를 찾지 못했어요. Threads 주소를 한 줄에 하나씩 붙여넣어 주세요.";
       return;
     }
+    $("#quickSave").disabled = true;
+    $("#quickSave").textContent = "이미지 불러오는 중...";
     let epNum = nextEpisodeNumber();
     const date = todayStr();
-    const newItems = entries.map((entry) => {
+    const entriesWithMeta = await Promise.all(entries.map(async (entry) => ({
+      ...entry,
+      meta: await apiGetMeta(entry.url)
+    })));
+    const newItems = entriesWithMeta.map((entry) => {
       const ep = epNum++;
+      const metaTitle = String(entry.meta?.title || "").trim();
+      const metaImage = String(entry.meta?.image || "").trim();
       return {
         id: newId(),
         ep,
         date,
-        title: entry.title || `EP${pad(ep)}`,
+        title: entry.title || metaTitle || `EP${pad(ep)}`,
         url: entry.url,
-        thumb: ""
+        thumb: metaImage
       };
     });
     episodes.push(...newItems);
     try {
+      $("#quickSave").textContent = "저장 중...";
       await apiSaveEpisodes();
       cancelForm();
       render();
     } catch (error) {
       episodes = episodes.filter((ep) => !newItems.some((item) => item.id === ep.id));
       errEl.textContent = error.message;
+      $("#quickSave").disabled = false;
+      $("#quickSave").textContent = "링크 저장";
     }
   }
 
